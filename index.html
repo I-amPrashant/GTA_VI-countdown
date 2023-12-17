@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200;300;400&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        text-wrap: balance;
+      }
+      body {
+        height: 100vh;
+        overflow-x: hidden;
+        background-color: #2b2b2b;
+        color: rgb(209, 207, 207);
+      }
+      #main-container {
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+        gap: 40px;
+        max-width: 500px;
+        text-align: center;
+        padding: 50px 10px;
+        margin: auto;
+      }
+      h1 {
+        letter-spacing: 4px;
+        font-size: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      h4 {
+        color: gray;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      h2 {
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 20px;
+      }
+      #time-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        padding: 20px 0px;
+        border-bottom: 5px solid rgba(31, 31, 31, 0.1);
+    }
+    
+    .time_store {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: start;
+    }
+    #form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    input {
+        background-color: #313131;
+        outline: none;
+        border: none;
+        padding: 5px;
+        color: gray;
+    }
+    button {
+        padding: 6px 30px;
+        border-radius: 5px;
+        height: 100%;
+        background-color: #38b889;
+        outline: none;
+        user-select: none;
+        border: none;
+        cursor: pointer;
+      }
+      #time-container h1 {
+          color: rgb(152, 152, 152);
+        }
+      span {
+        background-color: #363636;
+        padding: 2px 8px;
+        border-radius: 2px;
+        margin-right: 3px;
+        position: relative;
+        box-shadow: -1px 1px 5px 0.5px rgba(0, 0, 0, 0.2);
+    }
+    @media (max-width:350px){
+            #time-container{
+                flex-direction: column;
+                align-items: center;
+            }
+            .time_store{
+                align-items: center;
+            }
+    }
+    </style>
+  </head>
+  <body>
+      <div id="main-container">
+          <h1>Launching soon</h1>
+          <h4>
+              GTA VI will be here soon. brace up for a whole lot of fun with awesome
+        graphics gameplay.
+      </h4>
+      
+      <div id="time-container">
+          <div id="days" class="time_store">
+          <h4>Days</h4>
+          <h1></h1>
+        </div>
+        <div id="hours" class="time_store">
+            <h4>Hours</h4>
+            <h1></h1>
+        </div>
+        <div id="minutes" class="time_store">
+            <h4>Minutes</h4>
+          <h1></h1>
+        </div>
+        <div id="seconds" class="time_store">
+          <h4>Seconds</h4>
+          <h1></h1>
+        </div>
+      </div>
+
+      <h2>get notified</h2>
+
+      <h4>
+        Get informed about the upcoming events. We will let you know as soon as
+        its here
+      </h4>
+
+      <form id="form" type="submit">
+        <input type="email" name="email" id="email" required placeholder="enter your email"/>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script>
+
+            const day = document.getElementById("days").lastElementChild;
+            const hour = document.getElementById("hours").lastElementChild;
+            const minute = document.getElementById("minutes").lastElementChild;
+            const second = document.getElementById("seconds").lastElementChild;
+      
+            let days = 0;
+            const timeSetter = setInterval(() => {
+              const eventDate = new Date("february 11 2025, 11:20:00");
+              const currentDate = new Date();
+      
+              let timeDifference = eventDate - currentDate;
+              const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+              const hours = Math.floor(
+                (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+              );
+              const minutes = Math.floor(
+                (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+              );
+              const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      
+              day.innerHTML = `${days<10?"0"+days:days}`;  
+              hour.innerHTML = `${hours<10?"0"+hours:hours}`;
+              minute.innerHTML = `${minutes<10?"0"+minutes:minutes}`;
+              second.innerHTML = `${seconds<10?"0"+seconds:seconds}`;
+              if(eventDate===currentDate){
+                clearInterval(timeSetter);
+              }
+            });
+    </script>
+  </body>
+</html>
